@@ -102,7 +102,7 @@ export default function LoginPage() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="tech-label">Access Key</label>
-                  <Link href="/forgot-password" size="sm" className="text-[10px] text-brand-red hover:text-white font-mono uppercase tracking-widest">
+                  <Link href="/forgot-password" className="text-[10px] text-brand-red hover:text-white font-mono uppercase tracking-widest">
                     Recovery
                   </Link>
                 </div>
