@@ -62,7 +62,9 @@ export function WebSocketHandler() {
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, [addDetection, updateJob, removeJob]);
 
   return null;
