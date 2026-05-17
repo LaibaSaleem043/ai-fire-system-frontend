@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-brand-red: #FF3B30;
+  --color-brand-orange: #FF9500;
+  --color-ui-bg: #080809;
+  --color-ui-panel: #121214;
+  --color-ui-accent: #FFFFFF;
+}
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #080809;
+    --border: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --background: #080809;
+    --foreground: #FFFFFF;
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground selection:bg-brand-red/30;
+  }
+}
+
+@layer components {
+  /* Technical Panel instead of Glass Card */
+  .tech-panel {
+    @apply bg-ui-panel border border-border rounded-none relative overflow-hidden;
+  }
+
+  .tech-panel-header {
+    @apply border-b border-border px-4 py-2 flex items-center justify-between bg-white/[0.02];
+  }
+
+  /* Base button styles */
+  .tech-button {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-border 
+           hover:border-ui-accent transition-colors duration-200 
+           uppercase tracking-widest text-[10px] font-mono font-bold;
+  }
+
+  .tech-button-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-border 
+           hover:border-ui-accent transition-colors duration-200 
+           uppercase tracking-widest text-[10px] font-mono font-bold
+           bg-ui-accent text-ui-bg hover:bg-transparent hover:text-ui-accent;
+  }
+
+  .tech-button-danger {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-border 
+           hover:border-ui-accent transition-colors duration-200 
+           uppercase tracking-widest text-[10px] font-mono font-bold
+           bg-brand-red border-brand-red text-white hover:bg-transparent hover:text-brand-red;
+  }
+
+  .tech-label {
+    @apply text-[10px] uppercase tracking-[0.2em] font-mono font-bold text-white/40;
+  }
+
+  .tech-input {
+    @apply w-full bg-white/[0.03] border border-border rounded-none py-3 px-4 text-white font-mono text-sm
+           focus:outline-none focus:border-brand-red transition-all duration-200
+           placeholder:text-white/10;
+  }
+
+  /* Browser Autofill Overrides */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px #080809 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .tech-value {
+    @apply text-xl font-medium tracking-tight;
+  }
+
+  .scanline {
+    @apply absolute inset-0 pointer-events-none opacity-[0.03] overflow-hidden;
+    background: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+    background-size: 100% 4px;
+  }
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  @apply tracking-tight font-bold uppercase;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border hover:bg-white/20 transition-colors;
+}
